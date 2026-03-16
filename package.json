@@ -27,6 +27,9 @@
     "three": "^0.168.0",
     "three-stdlib": "^2.33.0"
   },
+  "overrides": {
+    "three-mesh-bvh": "0.8.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@types/react": "^18.3.3",
