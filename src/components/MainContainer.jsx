@@ -4,6 +4,7 @@ import Career from "./Career";
 import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
+import LiquidEther from "./LiquidEther";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
@@ -13,9 +14,7 @@ import setSplitText from "./utils/splitText";
 const TechStack = lazy(() => import("./TechStack"));
 
 const MainContainer = ({ children }) => {
-  const [isDesktopView, setIsDesktopView] = useState(
-    window.innerWidth > 1024
-  );
+  const [isDesktopView, setIsDesktopView] = useState(window.innerWidth > 1024);
 
   useEffect(() => {
     const resizeHandler = () => {
@@ -31,6 +30,37 @@ const MainContainer = ({ children }) => {
 
   return (
     <div className="container-main">
+      {/* LiquidEther fluid simulation — fixed full-screen background */}
+      <div
+        style={{
+          position: "fixed",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+          pointerEvents: "none",
+        }}
+      >
+        <LiquidEther
+          colors={["#5227FF", "#FF9FFC", "#B19EEF"]}
+          mouseForce={20}
+          cursorSize={100}
+          isViscous
+          viscous={30}
+          iterationsViscous={32}
+          iterationsPoisson={32}
+          resolution={0.5}
+          isBounce={false}
+          autoDemo
+          autoSpeed={0.5}
+          autoIntensity={2.2}
+          takeoverDuration={0.25}
+          autoResumeDelay={3000}
+          autoRampDuration={0.6}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </div>
+
       <Cursor />
       <Navbar />
       <SocialIcons />

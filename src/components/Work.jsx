@@ -8,44 +8,43 @@ gsap.registerPlugin(useGSAP);
 
 const Work = () => {
   useGSAP(() => {
-  let translateX = 0;
+    let translateX = 0;
 
-  function setTranslateX() {
-    const box = document.getElementsByClassName("work-box");
-    const rectLeft = document
-      .querySelector(".work-container")
-      .getBoundingClientRect().left;
-    const rect = box[0].getBoundingClientRect();
-    const parentWidth = box[0].parentElement.getBoundingClientRect().width;
-    let padding =
-      parseInt(window.getComputedStyle(box[0]).padding) / 2;
-    translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-  }
+    function setTranslateX() {
+      const box = document.getElementsByClassName("work-box");
+      const rectLeft = document
+        .querySelector(".work-container")
+        .getBoundingClientRect().left;
+      const rect = box[0].getBoundingClientRect();
+      const parentWidth = box[0].parentElement.getBoundingClientRect().width;
+      let padding = parseInt(window.getComputedStyle(box[0]).padding) / 2;
+      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
+    }
 
-  setTranslateX();
+    setTranslateX();
 
-  let timeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".work-section",
-      start: "top top",
-      end: `+=${translateX}`,
-      scrub: true,
-      pin: true,
-      id: "work",
-    },
-  });
+    let timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".work-section",
+        start: "top top",
+        end: `+=${translateX}`,
+        scrub: true,
+        pin: true,
+        id: "work",
+      },
+    });
 
-  timeline.to(".work-flex", {
-    x: -translateX,
-    ease: "none",
-  });
+    timeline.to(".work-flex", {
+      x: -translateX,
+      ease: "none",
+    });
 
-  return () => {
-    timeline.kill();
-    ScrollTrigger.getById("work")?.kill();
-  };
-}, []);
-const projects = [
+    return () => {
+      timeline.kill();
+      ScrollTrigger.getById("work")?.kill();
+    };
+  }, []);
+  const projects = [
     {
       name: "Focus",
       category: "Web Development & Design",
@@ -63,7 +62,7 @@ const projects = [
     {
       name: "Warm Touch",
       category: "Web Development & Design",
-      tools: "Javascript, TypeScript, React",
+      tools: "Javascript, TypeScript, React , node.js,Mysql ",
       image: "/images/warm_totuch.png",
       link: "https://www.warmtotuch.store/",
     },
@@ -84,7 +83,7 @@ const projects = [
     {
       name: "Warm Touch",
       category: "Web Development & Design",
-      tools: "Javascript, TypeScript, React",
+      tools: "Javascript, TypeScript, React , node.js,Mysql ",
       image: "/images/warm_totuch.png",
       link: "https://www.warmtotuch.store/",
     },
@@ -111,7 +110,11 @@ const projects = [
                 <h4>Tools and features</h4>
                 <p>{project.tools}</p>
               </div>
-              <WorkImage image={project.image} alt={project.name} link={project.link} />
+              <WorkImage
+                image={project.image}
+                alt={project.name}
+                link={project.link}
+              />
             </div>
           ))}
         </div>
