@@ -45,6 +45,51 @@ const Work = () => {
     ScrollTrigger.getById("work")?.kill();
   };
 }, []);
+const projects = [
+    {
+      name: "Focus",
+      category: "Web Development & Design",
+      tools: "React, Javascript, CSS",
+      image: "/images/Focus.png",
+      link: "https://focus-five-gamma.vercel.app/",
+    },
+    {
+      name: "Mazen Web",
+      category: "Web Development & Design",
+      tools: "React, Javascript, TailwindCSS",
+      image: "/images/mazen_web.png",
+      link: "https://portfolio-test-smoky-ten.vercel.app/",
+    },
+    {
+      name: "Warm Touch",
+      category: "Web Development & Design",
+      tools: "Javascript, TypeScript, React",
+      image: "/images/warm_totuch.png",
+      link: "https://www.warmtotuch.store/",
+    },
+    {
+      name: "Focus",
+      category: "Web Development & Design",
+      tools: "React, Javascript, CSS",
+      image: "/images/Focus.png",
+      link: "https://focus-five-gamma.vercel.app/",
+    },
+    {
+      name: "Mazen Web",
+      category: "Web Development & Design",
+      tools: "React, Javascript, TailwindCSS",
+      image: "/images/mazen_web.png",
+      link: "https://portfolio-test-smoky-ten.vercel.app/",
+    },
+    {
+      name: "Warm Touch",
+      category: "Web Development & Design",
+      tools: "Javascript, TypeScript, React",
+      image: "/images/warm_totuch.png",
+      link: "https://www.warmtotuch.store/",
+    },
+  ];
+
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
@@ -52,21 +97,21 @@ const Work = () => {
           My <span>Work</span>
         </h2>
         <div className="work-flex">
-          {[...Array(6)].map((_value, index) => (
+          {projects.map((project, index) => (
             <div className="work-box" key={index}>
               <div className="work-info">
                 <div className="work-title">
                   <h3>0{index + 1}</h3>
 
                   <div>
-                    <h4>Project Name</h4>
-                    <p>Category</p>
+                    <h4>{project.name}</h4>
+                    <p>{project.category}</p>
                   </div>
                 </div>
                 <h4>Tools and features</h4>
-                <p>Javascript, TypeScript, React, Threejs</p>
+                <p>{project.tools}</p>
               </div>
-              <WorkImage image="/images/placeholder.webp" alt="" />
+              <WorkImage image={project.image} alt={project.name} link={project.link} />
             </div>
           ))}
         </div>
