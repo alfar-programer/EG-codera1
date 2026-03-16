@@ -45,7 +45,7 @@
 .work-flex::before,
 .work-flex::after {
   content: "";
-  width: calc(50000vw);
+  width: 500vw;
   height: 1px;
   background-color: #363636;
   position: absolute;

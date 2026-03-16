@@ -1,15 +1,25 @@
-import { useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useGSAP } from "@gsap/react";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+gsap.registerPlugin(ScrollSmoother, ScrollTrigger, useGSAP);
 export let smoother;
 
+const NAV_LINKS = [
+  { label: "About",   href: "#about"   },
+  { label: "Work",    href: "#work"    },
+  { label: "Contact", href: "#contact" },
+];
+
 const Navbar = () => {
-  useEffect(() => {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef(null);
+
+  useGSAP(() => {
     smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
@@ -23,57 +33,123 @@ const Navbar = () => {
     smoother.scrollTop(0);
     smoother.paused(true);
 
-    let links = document.querySelectorAll(".header ul a");
-    links.forEach((elem) => {
-      let element = elem;
-      element.addEventListener("click", (e) => {
+    // Scroll-based backdrop
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // Smooth nav link scrolling
+    const links = document.querySelectorAll(".nav-link[data-href]");
+    links.forEach((el) => {
+      el.addEventListener("click", (e) => {
         if (window.innerWidth > 1024) {
           e.preventDefault();
-          let elem = e.currentTarget;
-          let section = elem.getAttribute("data-href");
+          const section = el.getAttribute("data-href");
           smoother.scrollTo(section, true, "top top");
         }
+        setMenuOpen(false);
       });
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+
+    window.addEventListener("resize", () => ScrollSmoother.refresh(true));
+
+    // Entrance animation
+    gsap.fromTo(
+      headerRef.current,
+      { y: -80, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.9, ease: "power3.out", delay: 0.2 }
+    );
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
+
+  const handleNavClick = (e, href) => {
+    if (window.innerWidth > 1024 && smoother) {
+      e.preventDefault();
+      smoother.scrollTo(href, true, "top top");
+    }
+    setMenuOpen(false);
+  };
+
   return (
     <>
-      <div className="header">
-        <a href="/#" className="navbar-title" data-cursor="disable">
-          EG CODERA
+      <header
+        ref={headerRef}
+        className={`navbar ${scrolled ? "navbar--scrolled" : ""}`}
+        data-cursor="disable"
+      >
+        {/* Logo */}
+        <a href="/#" className="navbar__logo" data-cursor="disable">
+          <img src="/images/logo.png" alt="EG Codera Logo" />
+          <span className="navbar__logo-text">EG CODERA</span>
         </a>
+
+        {/* Desktop nav links – center */}
+        <nav className="navbar__links">
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              data-href={href}
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, href)}
+            >
+              <span className="nav-link__inner">{label}</span>
+            </a>
+          ))}
+        </nav>
+
+        {/* CTA button – right */}
         <a
           href="mailto:egcodera6@gmail.com"
-          className="navbar-connect"
+          className="navbar__cta"
           data-cursor="disable"
         >
-         egcodera6@gmail.com
+          <span>Let&apos;s Talk</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 13L13 1M13 1H4M13 1V10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </a>
-        <ul>
-          <li>
-            <a data-href="#about" href="#about">
-              <HoverLinks text="ABOUT" />
+
+        {/* Mobile hamburger */}
+        <button
+          className={`navbar__burger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </header>
+
+      {/* Mobile drawer */}
+      <div className={`navbar__drawer ${menuOpen ? "navbar__drawer--open" : ""}`}>
+        <nav>
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={href}
+              href={href}
+              data-href={href}
+              className="nav-link drawer-link"
+              onClick={(e) => handleNavClick(e, href)}
+            >
+              {label}
             </a>
-          </li>
-          <li>
-            <a data-href="#work" href="#work">
-              <HoverLinks text="WORK" />
-            </a>
-          </li>
-          <li>
-            <a data-href="#contact" href="#contact">
-              <HoverLinks text="CONTACT" />
-            </a>
-          </li>
-        </ul>
+          ))}
+          <a
+            href="mailto:egcodera6@gmail.com"
+            className="navbar__cta drawer-cta"
+          >
+            Let&apos;s Talk
+          </a>
+        </nav>
       </div>
 
-      <div className="landing-circle1"></div>
-      <div className="landing-circle2"></div>
-      <div className="nav-fade"></div>
+      <div className="landing-circle1" />
+      <div className="landing-circle2" />
+      <div className="nav-fade" />
     </>
   );
 };

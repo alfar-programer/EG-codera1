@@ -19,7 +19,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   --accentColor: #c2a4ff;
-  --backgroundColor: transparent;
+  --backgroundColor: #0b080c;
   --vh: 100vh;
   --vh: 100svh;
 }
@@ -74,7 +74,6 @@ body {
   width: 100%;
   margin: auto;
   position: relative;
-  z-index: 1;
 }
 .container1 {
   width: var(--cWidth);
@@ -99,7 +98,7 @@ body {
   height: var(--vh);
   margin: auto;
   margin-top: 50px;
-  background-color: var(--backgroundColor);
+  background-color: #0b080c;
 }
 
 .techstack h2 {
