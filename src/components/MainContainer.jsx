@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import About from "./About";
 import Career from "./Career";
-import Contact from "./Contact";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import LiquidEther from "./LiquidEther";
@@ -9,7 +8,7 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
-import TechStack from "./TechStack";
+import Footer from "./Footer";
 import setSplitText from "./utils/splitText";
 
 const MainContainer = ({ children }) => {
@@ -72,8 +71,7 @@ const MainContainer = ({ children }) => {
             <WhatIDo />
             <Career />
             <Work />
-            {isDesktopView && <TechStack />}
-            <Contact />
+            <Footer />
           </div>
         </div>
       </div>
