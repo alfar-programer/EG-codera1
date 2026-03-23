@@ -1,0 +1,121 @@
+/* ============================================
+   Shared page shell styles
+   ============================================ */
+
+.page-shell {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  color: #eae5ec;
+}
+
+/* Fixed full-screen background layer */
+.page-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content sits above the bg */
+.page-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 100px;
+}
+
+/* ── Shared hero section ─────────────────────── */
+.about-hero {
+  width: var(--cWidth, 90%);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 60px 0 80px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accentColor, #b19eef);
+  margin: 0 0 20px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: var(--accentColor, #b19eef);
+  opacity: 0.6;
+}
+
+.page-hero-title {
+  font-size: clamp(48px, 7vw, 100px);
+  font-weight: 500;
+  margin: 0 0 28px;
+  line-height: 0.95;
+  letter-spacing: -3px;
+  color: #fff;
+}
+
+.page-hero-accent {
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--accentColor, #b19eef);
+}
+
+.page-hero-sub {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 300;
+  max-width: 580px;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+/* ── Coming-soon placeholder ─────────────────── */
+.page-coming-soon {
+  width: var(--cWidth, 90%);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.page-coming-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 24px;
+  border-radius: 40px;
+}
+
+.page-coming-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accentColor, #b19eef);
+  opacity: 0.5;
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50%       { opacity: 0.8; transform: scale(1); }
+}

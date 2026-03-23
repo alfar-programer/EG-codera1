@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import About from "./About";
 import Career from "./Career";
+import ExpandableCards from "./ExpandableCards";
 import Cursor from "./Cursor";
 import Landing from "./Landing";
 import LiquidEther from "./LiquidEther";
@@ -70,6 +71,7 @@ const MainContainer = ({ children }) => {
             <About />
             <WhatIDo />
             <Career />
+            <ExpandableCards />
             <Work />
             <Footer />
           </div>

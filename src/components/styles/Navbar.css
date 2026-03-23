@@ -98,6 +98,14 @@
 .navbar__links .nav-link:hover::after {
   width: 100%;
 }
+/* Active route link */
+.navbar__links .nav-link--active {
+  color: #eae5ec;
+}
+.navbar__links .nav-link--active::after {
+  width: 100%;
+  background: linear-gradient(90deg, #c2a4ff, #ff9ffc);
+}
 
 /* ─── CTA button ─────────────────────────────────────────────── */
 .navbar__cta {
@@ -189,16 +197,62 @@
   gap: 36px;
 }
 .drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: rgba(234, 229, 236, 0.7);
+  color: rgba(234, 229, 236, 0.65);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.25s, transform 0.25s;
+  animation: drawerLinkIn 0.4s both;
 }
 .drawer-link:hover {
   color: #c2a4ff;
+  transform: translateX(6px);
+}
+.drawer-link--active {
+  color: #c2a4ff;
+}
+.drawer-link__num {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: rgba(194, 164, 255, 0.5);
+  min-width: 24px;
+  align-self: flex-end;
+  margin-bottom: 6px;
+}
+/* Decorative background rings in drawer */
+.drawer-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.drawer-deco-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(194, 164, 255, 0.06);
+}
+.drawer-deco-ring--1 {
+  width: 600px;
+  height: 600px;
+  right: -200px;
+  bottom: -100px;
+}
+.drawer-deco-ring--2 {
+  width: 380px;
+  height: 380px;
+  right: -80px;
+  bottom: 60px;
+  border-color: rgba(255, 159, 252, 0.05);
+}
+@keyframes drawerLinkIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 .drawer-cta {
   margin-top: 8px;
