@@ -88,7 +88,7 @@ const WhatIDo = () => {
 
             <div className="what-content-in">
               <h3>DEVELOP</h3>
-              <h4>Description</h4>
+              <h4>Engineering &amp; Development</h4>
               <p>
                 We build fast, scalable, and secure digital products. From dynamic modern web applications to complex enterprise solutions, our engineering team uses cutting-edge technologies and best practices to transform your ideas into robust, high-performing software that drives real business results.
               </p>
@@ -115,7 +115,7 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
             <div className="what-content-in">
               <h3>DESIGN</h3>
-              <h4>Description</h4>
+              <h4>UI/UX &amp; Visual Identity</h4>
               <p>
                 We craft beautiful, intuitive, and highly engaging user experiences. By blending modern aesthetics with deep user-centric research, we design premium interfaces and immersive visual identities that captivate your audience and elevate your brand's digital presence to the next level.
               </p>
@@ -142,7 +142,7 @@ const WhatIDo = () => {
             <div className="what-corner"></div>
             <div className="what-content-in">
               <h3>QA</h3>
-              <h4>Description</h4>
+              <h4>Quality Assurance &amp; Testing</h4>
               <p>
                 We ensure flawless performance and zero compromises on quality. Through rigorous automated and manual testing methodologies, our QA specialists meticulously validate every component of your software to guarantee reliability, security, and a seamless experience for your users before launch.
               </p>

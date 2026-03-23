@@ -19,10 +19,6 @@ const Landing = ({ children }) => {
               <div className="landing-h2-1">Designers</div>
               <div className="landing-h2-2">Developers</div>
             </h2>
-            <h2>
-              <div className="landing-h2-info">Developers</div>
-              <div className="landing-h2-info-1">Designers</div>
-            </h2>
           </div>
         </div>
         {children}

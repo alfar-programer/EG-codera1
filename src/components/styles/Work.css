@@ -27,6 +27,9 @@
   margin-left: -80px;
   padding-right: 120px;
   position: relative;
+  will-change: transform; /* Hint to the browser for GPU acceleration */
+  backface-visibility: hidden; /* Prevent flickering */
+  transform: translateZ(0); /* Trigger 3D layer for smoother compositing */
 }
 .work-box {
   padding: 80px;

@@ -8,34 +8,33 @@ gsap.registerPlugin(useGSAP);
 
 const Work = () => {
   useGSAP(() => {
-    let translateX = 0;
-
-    function setTranslateX() {
+    const getTranslateX = () => {
       const box = document.getElementsByClassName("work-box");
-      const rectLeft = document
-        .querySelector(".work-container")
-        .getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
+      const container = document.querySelector(".work-container");
+      if (!box[0] || !container) return 0;
+      
+      const rectLeft = container.getBoundingClientRect().left;
+      const rectWidth = box[0].getBoundingClientRect().width;
       const parentWidth = box[0].parentElement.getBoundingClientRect().width;
       let padding = parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      translateX = rect.width * box.length - (rectLeft + parentWidth) + padding;
-    }
-
-    setTranslateX();
+      
+      return rectWidth * box.length - (rectLeft + parentWidth) + padding;
+    };
 
     let timeline = gsap.timeline({
       scrollTrigger: {
         trigger: ".work-pin-wrapper",
         start: "top top",
-        end: `+=${translateX}`,
-        scrub: true,
+        end: () => `+=${getTranslateX()}`,
+        scrub: 1.2, // Smoother scrolling feel
         pin: true,
         id: "work",
+        invalidateOnRefresh: true, // Recalculate on window resize
       },
     });
 
     timeline.to(".work-flex", {
-      x: -translateX,
+      x: () => -getTranslateX(),
       ease: "none",
     });
 

@@ -63,12 +63,20 @@ const Scene = () => {
           scene.add(character);
           headBone = character.getObjectByName("spine006") || null;
           screenLight = character.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
+          const finishLoading = () => {
+            progress.loaded().then(() => {
+              setTimeout(() => {
+                light.turnOnLights();
+                animations.startIntro();
+              }, 2500);
+            });
+          };
+
+          if (document.readyState === "complete") {
+            finishLoading();
+          } else {
+            window.addEventListener("load", finishLoading, { once: true });
+          }
           window.addEventListener("resize", () =>
             handleResize(renderer, camera, canvasDiv, character)
           );
