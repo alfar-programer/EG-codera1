@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
+import LiquidEther from "./LiquidEther";
 
 const Loading = ({ percent }) => {
   const { setIsLoading } = useLoading();
@@ -29,9 +30,32 @@ const Loading = ({ percent }) => {
 
   return (
     <div className={`loading-wrapper ${loaded ? "loading-exit" : ""}`}>
-      <div className="loading-bg"></div>
+      <div className="loading-bg">
+        <LiquidEther 
+          autoDemo={true} 
+          colors={['#c2a4ff', '#ae99f0', '#9a8ee1', '#8683d2']} 
+          autoIntensity={0.8}
+          autoSpeed={0.2}
+          resolution={0.25}
+          iterationsPoisson={20}
+          iterationsViscous={20}
+          dt={0.01}
+        />
+      </div>
       <div className="loading-content">
-        <div className="loading-logo">EG CODERA</div>
+        <div className="loading-logo-container">
+          <img src="/images/logo.png" alt="EG CODERA Logo" className="loading-logo-img" />
+        </div>
+        <div className="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div className="loading-tagline">CREATIVE DIGITAL SOLUTIONS</div>
         <div className="loading-counter">
           {Math.min(percent, 100)}<span>%</span>
         </div>
